@@ -2,6 +2,7 @@ import React from "react";
 import FilmList from "./FilmList";
 import Swapi from "../apis/Swapi";
 import FilmDetail from "./FilmDetail";
+
 class App extends React.Component {
   state = { films: [], selectedFilm: null };
 
