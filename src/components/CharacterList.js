@@ -10,6 +10,9 @@ class CharacterList extends React.Component {
   }
 
   getCharacters() {
+    if (!this.props.characters) {
+      return;
+    }
     this.props.characters.map(character =>
       Swapi.get(character.replace("https://swapi.co/api", "")).then(response =>
         this.setState({
@@ -31,6 +34,14 @@ class CharacterList extends React.Component {
   }
 
   render() {
+    if (!this.props.characters.length) {
+      return (
+        <div>
+          <h3>Characters</h3>
+          No Characters
+        </div>
+      );
+    }
     if (!this.state.characters.length) {
       return <div>loading characters</div>;
     }
@@ -39,7 +50,7 @@ class CharacterList extends React.Component {
       <div>
         <h3>Characters</h3>
         {this.state.characters.map(character => (
-          <div>{character}</div>
+          <div key={character}>{character}</div>
         ))}
       </div>
     );

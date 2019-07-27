@@ -3,10 +3,17 @@ import FilmItem from "./FilmItem";
 
 const FilmList = ({ films, onFilmSelect }) => {
   const renderList = films.map(film => {
-    return <FilmItem film={film} onFilmSelect={onFilmSelect} />;
+    return (
+      <FilmItem key={film.episode_id} film={film} onFilmSelect={onFilmSelect} />
+    );
   });
 
-  return <div>{renderList}</div>;
+  return (
+    <div>
+      <h3>Film List</h3>
+      {renderList}
+    </div>
+  );
 };
 
 export default FilmList;
