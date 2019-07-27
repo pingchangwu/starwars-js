@@ -14,11 +14,17 @@ class CharacterList extends React.Component {
       return;
     }
     this.props.characters.map(character =>
-      Swapi.get(character.replace("https://swapi.co/api", "")).then(response =>
-        this.setState({
-          characters: this.state.characters.concat(response.data.name)
+      Swapi.get(character.replace("https://swapi.co/api", ""))
+        .then(response =>
+          this.setState({
+            characters: this.state.characters.concat(response.data.name)
+          })
+        )
+        .catch(function(error) {
+          this.setState({
+            characters: []
+          });
         })
-      )
     );
   }
 

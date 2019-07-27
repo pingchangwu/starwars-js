@@ -14,11 +14,17 @@ class VehicleList extends React.Component {
       return;
     }
     this.props.vehicles.map(vehicle =>
-      Swapi.get(vehicle.replace("https://swapi.co/api", "")).then(response =>
-        this.setState({
-          vehicles: this.state.vehicles.concat(response.data.name)
+      Swapi.get(vehicle.replace("https://swapi.co/api", ""))
+        .then(response =>
+          this.setState({
+            vehicles: this.state.vehicles.concat(response.data.name)
+          })
+        )
+        .catch(function(error) {
+          this.setState({
+            vehicles: []
+          });
         })
-      )
     );
   }
 

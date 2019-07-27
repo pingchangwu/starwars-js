@@ -14,11 +14,17 @@ class PlanetList extends React.Component {
       return;
     }
     this.props.planets.map(planet =>
-      Swapi.get(planet.replace("https://swapi.co/api", "")).then(response =>
-        this.setState({
-          planets: this.state.planets.concat(response.data.name)
+      Swapi.get(planet.replace("https://swapi.co/api", ""))
+        .then(response =>
+          this.setState({
+            planets: this.state.planets.concat(response.data.name)
+          })
+        )
+        .catch(function(error) {
+          this.setState({
+            planets: []
+          });
         })
-      )
     );
   }
 

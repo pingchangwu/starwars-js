@@ -7,7 +7,11 @@ class App extends React.Component {
   state = { films: [], selectedFilm: null };
 
   async getFilms() {
-    const response = await Swapi.get("/films");
+    const response = await Swapi.get("/films").catch(function(error) {
+      this.setState({
+        films: []
+      });
+    });
     this.setState({ films: response.data.results });
   }
 
@@ -20,6 +24,9 @@ class App extends React.Component {
   }
 
   render() {
+    if (!this.state.films.length) {
+      return <div>Loading</div>;
+    }
     return (
       <div className="container">
         <FilmList films={this.state.films} onFilmSelect={this.onFilmSelect} />
