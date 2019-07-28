@@ -1,6 +1,6 @@
 import React from "react";
 import Swapi from "../apis/Swapi";
-
+import GetUrl from "../apis/GetUrl";
 class CharacterList extends React.Component {
   constructor(props) {
     super(props);
@@ -14,7 +14,7 @@ class CharacterList extends React.Component {
       return;
     }
     this.props.characters.map(character =>
-      Swapi.get(character.replace("https://swapi.co/api", ""))
+      Swapi.get(GetUrl(character))
         .then(response =>
           this.setState({
             characters: this.state.characters.concat(response.data.name)

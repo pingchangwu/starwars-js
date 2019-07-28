@@ -1,5 +1,6 @@
 import React from "react";
 import Swapi from "../apis/Swapi";
+import GetUrl from "../apis/GetUrl";
 
 class VehicleList extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class VehicleList extends React.Component {
       return;
     }
     this.props.vehicles.map(vehicle =>
-      Swapi.get(vehicle.replace("https://swapi.co/api", ""))
+      Swapi.get(GetUrl(vehicle))
         .then(response =>
           this.setState({
             vehicles: this.state.vehicles.concat(response.data.name)
