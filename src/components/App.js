@@ -1,6 +1,6 @@
 import React from "react";
 import FilmList from "./FilmList";
-import FilmDetail from "./FilmDetail";
+import InformationDetail from "./InformationDetail";
 import SearchBar from "./SearchBar";
 import Swapi from "../apis/Swapi";
 
@@ -44,7 +44,7 @@ class App extends React.Component {
       <div className="container">
         <SearchBar onFilmSearch={this.onFilmSearch} />
         <FilmList films={this.state.films} onFilmSelect={this.onFilmSelect} />
-        <FilmDetail film={this.state.selectedFilm} />
+        <InformationDetail film={this.state.selectedFilm} />
       </div>
     );
   }

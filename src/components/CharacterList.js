@@ -17,14 +17,10 @@ class CharacterList extends React.Component {
       Swapi.get(GetUrl(character))
         .then(response =>
           this.setState({
-            characters: this.state.characters.concat(response.data.name)
+            characters: this.state.characters.concat(response.data)
           })
         )
-        .catch(function(error) {
-          this.setState({
-            characters: []
-          });
-        })
+        .catch(function(error) {})
     );
   }
 
@@ -56,7 +52,12 @@ class CharacterList extends React.Component {
       <div>
         <h3>Characters</h3>
         {this.state.characters.map(character => (
-          <div key={character}>{character}</div>
+          <div
+            onClick={() => this.props.characterSelect(character)}
+            key={character.name}
+          >
+            {character.name}
+          </div>
         ))}
       </div>
     );
